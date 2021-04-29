@@ -13,11 +13,14 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
   </head>
   <body>
     <%= render 'home/header' %>
     <div class ='container'>
+    <% if notice %>
+    <br/>
+    <%= render 'layouts/alerts'%>
+    <%end%>
       <%= yield %>
     </div>
 
