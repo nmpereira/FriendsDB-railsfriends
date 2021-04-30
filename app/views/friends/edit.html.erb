@@ -4,9 +4,16 @@
   <div class="card-body">
 
 <br/>
+
 <%= render 'form', friend: @friend %>
-<br/>
+<% if @friend.user == current_user %>
+<%= button_to 'Delete Friend', @friend, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-outline-danger"%>
+<% end %>
+</div></div><br/>
+
+
 <%= link_to 'Show', @friend ,class:"btn btn-secondary"%>
-<%= link_to 'Back', friends_path ,class:"btn btn-dark"%>
- </div>
-</div>
+<%= link_to 'Back', friends_path ,class:"btn btn-outline-dark"%>
+
+ 
+
