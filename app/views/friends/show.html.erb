@@ -1,21 +1,15 @@
-<br/>
+<br />
 <div class="jumbotron">
-  <h1 class="display-4"><%= @friend.first_name %> <%= @friend.last_name %></h1>
-  <p class="lead">
-  
-  <%= @friend.email %> 
-
-  <% if @friend.phone.blank? or @friend.email.blank? %>|1 <%end%>
-  
-  
-   <%= @friend.phone %> 
-   
-   <% if (@friend.twitter.blank? or @friend.phone.blank?) %>|2 <%end%> 
-   
-   <%= @friend.twitter %></p>
-  <br/>
-  <p class="lead">
-    <%= link_to 'Edit', edit_friend_path(@friend) ,class:"btn btn-secondary" %>
-  <%= link_to 'Back', friends_path ,class:"btn btn-dark" %>
-  </p>
+    <h1 class="display-4"><%= @friend.first_name %> <%= @friend.last_name %></h1>
+    <p class="lead">
+        <%= @friend.email %>
+        <% if (@friend.email.present? and @friend.phone.present?) or  (@friend.email.present? and @friend.phone.present?) %>| <%end%>
+        <%= @friend.phone %>
+        <% if (@friend.phone.present? and @friend.twitter.present?) or  (@friend.email.present? and @friend.twitter.present?)%>| <%end%>
+        <%= @friend.twitter %></p>
+    <br />
+    <p class="lead">
+        <%= link_to 'Edit', edit_friend_path(@friend) ,class:"btn btn-secondary" %>
+        <%= link_to 'Back', friends_path ,class:"btn btn-dark" %>
+    </p>
 </div>
