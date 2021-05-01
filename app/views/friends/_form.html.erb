@@ -12,27 +12,27 @@
   <% end %>
 
   <div class="field mb-3">
-    <% form.label :first_name %>
+    <%= form.label :first_name %>
     <%= form.text_field :first_name ,class:"form-control" , placeholder:"First Name"%>
   </div>
 
   <div class="field mb-3">
-    <% form.label :last_name %>
+    <%= form.label :last_name %>
     <%= form.text_field :last_name ,class:"form-control", placeholder:"Last Name"%>
   </div>
 
   <div class="field mb-3">
-    <% form.label :email %>
+    <%= form.label :email %>
     <%= form.text_field :email ,class:"form-control", placeholder:"Email"%>
   </div>
 
   <div class="field mb-3">
-    <% form.label :phone %>
+    <%= form.label :phone %>
     <%= form.text_field :phone ,class:"form-control", placeholder:"Phone number"%>
   </div>
 
   <div class="field mb-3">
-    <% form.label :twitter %>
+    <%= form.label :@Social %>
     <%= form.text_field :twitter ,class:"form-control", placeholder:"@Social"%>
   </div>
 
@@ -41,6 +41,12 @@
     <%= form.number_field :user_id, id: :friend_user_id ,class:"form-control", value:current_user.id, type: :hidden%>
   </div>
 
+<% if current_user.admin?%>
+    <div class="field mb-3">
+    <%= form.label :user_email %><br />
+    <%= form.number_field :user_id, id: :friend_user_id ,class:"form-control", value: friend.user.id%>
+    </div>
+<%end%>
   <div class="actions">
   <br/>
     <%= form.submit class:"btn btn-outline-success"%> 

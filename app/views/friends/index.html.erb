@@ -10,7 +10,11 @@
                 <th>Phone</th>
                 <th>Social Handle</th>
                 <th>User's friend</th>
+                <% if user_signed_in? and current_user.admin?%>
+                <th colspan="3" style="text-align:Center">Admin</th>
+                <% else%>
                 <th colspan="2"></th>
+                <%end%>
             </tr>
         </thead>
 
@@ -25,15 +29,18 @@
                 <td><%= friend.phone %></td>
                 <td><%= friend.twitter %></td>
                 <td><%= friend.user.email %></td>
-                <!--<td><%= link_to 'Show', friend ,class:"btn btn-secondary"%></td>-->
-                <% if friend.user == current_user %>
-
+                <% if user_signed_in? and current_user.admin?%><td><%= friend.user.id %></td><%end%>
+                <!--<td><%#= link_to 'Show', friend ,class:"btn btn-secondary"%></td>-->
+                <% if friend.user == current_user%>
                 <td><%= link_to 'View Friend', friend ,class:"btn btn-outline-primary"%></td>
-                <!--<td><%= link_to 'Edit', edit_friend_path(friend) ,class:"btn btn-secondary"%></td>-->
+                <!--<td><%#= link_to 'Edit', edit_friend_path(friend) ,class:"btn btn-secondary"%></td>-->
+                <td><%= button_to 'Delete', friend, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-outline-danger"%></td>
+                <% elsif user_signed_in? and current_user.admin?%>
+                <td><%= link_to 'View/Edit Friend', friend ,class:"btn btn-outline-danger"%></td>
                 <td><%= button_to 'Delete', friend, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-outline-danger"%></td>
                 <% else%>
                 <td><%= link_to 'View Stranger', friend ,class:"btn btn-outline-secondary"%></td>
-                  <% if user_signed_in? %>
+                <% if user_signed_in? %>
                 <td></td>
                 <%end%>
             </tr>
